@@ -1,0 +1,115 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+#Gma-wrap {
+  margin: 0 auto;
+  position: relative;
+}
+
+#Gma-wrap .Gma-focus {
+  overflow: hidden;
+  position: relative;
+}
+
+#Gma-wrap .Gma-focus .centerbox {
+  position: relative;
+  left: 0px;
+}
+
+#Gma-wrap .Gma-focus .centerbox li {
+  float: left;
+  display: block;
+}
+
+#Gma-wrap .Gma-focus .centerbox li a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+
+#Gma-wrap .Gma-focus .centerbox li a img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  border: none;
+}
+
+#Gma-wrap .Gma-focus .centerbox li a p {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  bottom: 0px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+#Gma-wrap .Gma-Focus-btn {
+  width: 80px;
+  height: 80px;
+  display: block;
+  opacity: 0;
+  /*针对ie浏览器的透明度*/
+  filter: alpha(opacity=0);
+  background: darkred;
+  z-index: 9999;
+  position: absolute;
+  top: 45%;
+  margin-top: -50px;
+}
+
+#Gma-wrap .prev {
+  left: 0;
+}
+
+#Gma-wrap .next {
+  right: 0;
+}
+
+#Gma-wrap .fbtn {
+  width: auto;
+  height: 10px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+}
+
+#Gma-wrap .fbtn ul {
+  width: 100%;
+}
+
+#Gma-wrap .fbtn ul li {
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  float: left;
+  background: #333;
+  transition: all 0.5s;
+  position: relative;
+}
+
+#Gma-wrap .fbtn ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#Gma-wrap .fbtn ul li.on {
+  background: #ccc;
+  transition: all 0.5s;
+}
+
+#Gma-wrap .fbtn ul li:first-child {
+  margin-left: 0;
+}

@@ -1,0 +1,117 @@
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+#Gma-wrap {
+	margin: 0 auto;
+	position: relative;
+
+	.Gma-focus {
+		overflow: hidden;
+		position: relative;
+
+		.centerbox {
+			position: relative;
+			left: 0px;
+
+			li {
+				float: left;
+				display: block;
+
+				a {
+					width: 100%;
+					height: 100%;
+					display: block;
+					position: relative;
+
+					img {
+						width: 100%;
+						height: 100%;
+						display: block;
+						overflow: hidden;
+						border: none;
+					}
+
+					p {
+						position: absolute;
+						width: 100%;
+						height: 50px;
+						display: flex;
+						background: rgba(0, 0, 0, 0.5);
+						color: #fff;
+						bottom: 0px;
+						padding: 0 20px;
+						box-sizing: border-box;
+						align-items: center;
+					}
+				}
+			}
+
+		}
+
+	}
+
+	.Gma-Focus-btn {
+		width: 80px;
+		height: 80px;
+		display: block;
+		opacity: 0;
+		/*针对ie浏览器的透明度*/
+		filter: alpha(opacity=0);
+		background: darkred;
+		z-index: 9999;
+		position: absolute;
+		top: 45%;
+		margin-top: -50px;
+	}
+
+	.prev {
+		left: 0;
+	}
+
+	.next {
+		right: 0;
+	}
+
+	.fbtn {
+		width: auto;
+		height: 10px;
+		position: absolute;
+		right: 20px;
+		bottom: 20px;
+		z-index: 999;
+
+		ul {
+			width: 100%;
+
+			li {
+				width: 10px;
+				height: 10px;
+				margin-left: 5px;
+				float: left;
+				background: #333;
+				transition: all 0.5s;
+				position: relative;
+
+				a {
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			li.on {
+				background: #ccc;
+				transition: all 0.5s;
+			}
+
+			li:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+
+}
