@@ -18,7 +18,7 @@
       showIndex: 'true', //是否显示切换索引
       autoTime: '2500', //自动切换的时间
       clickTime: '500', //点击切换按钮切换的时间
-      imgWidth: '1400px', //图片默认宽度
+      imgWidth: '800px', //图片默认宽度
       imgHeight: '500px', //图片默认高度
     }
     this.options = $.extend({}, this.defaults, option)
@@ -34,10 +34,10 @@
       let $options = this.options;
       let $ulNum = $this.find('.centerbox li').length; //获取焦点轮播图的图片数量
       let $imgWidth = parseInt(this.options.imgWidth); //获取图片宽度
-
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
       let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度
-
+      
+      let $fadeTime = 'all ' + ($options.clickTime/1000) + 's';//为fade切换定义点击时切换的时间
 
       // 根据传入的值，设置css功能区
       {
@@ -82,7 +82,11 @@
               left: '-' + $go + 'px'
             }, $clickTime);
           } else if ($options.effect == 'fade') { //判断切换效果为fade时
-            $centerbox.find('li').fadeOut(500).eq(num).fadeIn();
+            $centerbox.find('li').eq(num).css({
+              'opacity': '1'
+            }).siblings().css({
+              'opacity': '0'
+            })
           }
           $fbtn.removeClass('on').eq(num).addClass('on');
         }
@@ -91,14 +95,15 @@
 
       // 主要判断功能区
       {
-        // 判断切换效果
+        // 判断切换效果为fade时，需要定义与滑动的不同的结构。
         if ($options.effect == 'fade') {
           let $this_Li = $this.find('.centerbox li');
           $this_Li.css({
-            'display': 'none',
+            'transition': $fadeTime,
+            'opacity': '0'
           })
           $this_Li.eq(0).css({
-            'display': 'block'
+            'opacity': '1'
           })
           $this.css({
             'position': 'relative'

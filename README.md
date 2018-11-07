@@ -1,3 +1,7 @@
+# 兼容性
+
+施工中
+
 # 结构
 
 ```
@@ -53,5 +57,5 @@ $('.Gma-1').left_Focus()
 | showIndex | true | 是否显示切换索引 | 默认显示切换索引 |
 | autoTime | 2500 | 自动切换的时间 | 2500ms |
 | clickTime | 500 | 点击切换按钮切换的时间 | 500ms |
-| imgWidth | 1400px | 图片默认宽度 | 1400px |
+| imgWidth | 800px | 图片默认宽度 | 1400px |
 | imgHeight | 500px | 图片默认高度 | 500px |
