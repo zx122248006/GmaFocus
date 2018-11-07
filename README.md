@@ -47,6 +47,7 @@ $('.Gma-1').left_Focus()
 # 可选参数
 | 名称 | 默认值 | 说明 |
 | ------ | ------ | ------ |
+| effect | slide | 默认切换效果 |
 | autoMove | true | 是否自动移动 |
 | showBtn | true | 是否显示切换按钮 |
 | showIndex | true | 是否显示切换索引 |
