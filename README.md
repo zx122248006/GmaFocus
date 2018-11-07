@@ -26,22 +26,22 @@
 # 调用方式
 
 ```
-$('.wrap').GmaFocus()
+$('#Gma-wrap').GmaFocus()
 ```
 
 ## 调用方式特别说明
 
-在页面中存在两个及以上的焦点轮播图时，则需要在``` <div class="wrap">``` 中增加别的类名或者ID名用于区分。
+在页面中存在两个及以上的焦点轮播图时，则需要在```<div id="Gma-wrap">``` 中增加别的类名用于区分。
 例如
 ```
-<div id="wrap1" class="wrap">
+<div id="Gma-wrap" class="Gma-1">
 </div>
 
 ```
 相应的调用方式也改变
 
 ```
-$('#wrap1').left_Focus()
+$('.Gma-1').left_Focus()
 ```
 
 # 可选参数
