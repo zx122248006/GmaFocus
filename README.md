@@ -45,13 +45,13 @@ $('.Gma-1').left_Focus()
 ```
 
 # 可选参数
-| 名称 | 默认值 | 说明 |
-| ------ | ------ | ------ |
-| effect | slide | 默认切换效果 |
-| autoMove | true | 是否自动移动 |
-| showBtn | true | 是否显示切换按钮 |
-| showIndex | true | 是否显示切换索引 |
-| autoTime | 2500 | 自动切换的时间 |
-| clickTime | 500 | 点击切换按钮切换的时间 |
-| imgWidth | 1400px | 图片默认宽度 |
-| imgHeight | 500px | 图片默认高度 |
+| 名称 | 默认值 | 说明 | 默认值说明 |
+| ------ | ------ | ------ | ------ |
+| effect | slide | 默认切换效果 | 默认左右切换 |
+| autoMove | true | 是否自动切换 | 默认自动切换 |
+| showBtn | true | 是否显示切换按钮 | 默认显示切换按钮 |
+| showIndex | true | 是否显示切换索引 | 默认显示切换索引 |
+| autoTime | 2500 | 自动切换的时间 | 2500ms |
+| clickTime | 500 | 点击切换按钮切换的时间 | 500ms |
+| imgWidth | 1400px | 图片默认宽度 | 1400px |
+| imgHeight | 500px | 图片默认高度 | 500px |
