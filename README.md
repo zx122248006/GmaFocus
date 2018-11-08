@@ -56,7 +56,7 @@ $('.Gma-1').left_Focus()
 | ------ | ------ | ------ | ------ | ------ |
 | effect | slide | 默认切换效果 | 默认左右切换 | fade |
 | autoMove | true | 是否自动切换 | 默认自动切换 | 无 |
-| showBtn | true | 是否显示切换按钮 | 默认显示切换按钮 | 无 |
+| showBtn | true | 是否显示切换按钮 | 默认显示切换按钮 | flase |
 | showIndex | true | 是否显示切换索引 | 默认显示切换索引 | 无 |
 | autoTime | 2500 | 自动切换的时间 | 2500ms | 无 |
 | clickTime | 500 | 点击切换按钮切换的时间 | 500ms | 无 |
