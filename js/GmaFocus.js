@@ -36,8 +36,8 @@
       let $imgWidth = parseInt(this.options.imgWidth); //获取图片宽度
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
       let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度
-      
-      let $fadeTime = 'all ' + ($options.clickTime/1000) + 's';//为fade切换定义点击时切换的时间
+
+      let $fadeTime = 'all ' + ($options.clickTime / 1000) + 's'; //为fade切换定义点击时切换的时间
 
       // 根据传入的值，设置css功能区
       {
@@ -121,8 +121,6 @@
         // 判断切换按钮是否显示
         if ($options.showBtn == 'true') {
 
-          $this.append('<a href="javascript:void(0)" class="Gma-Focus-btn prev"></a><a href="javascript:void(0)" class ="Gma-Focus-btn next"></a>');
-
           let $prev = $this.find('.prev'); //在动态增加切换按钮之后获取切换按钮
           let $next = $this.find('.next'); //在动态增加切换按钮之后获取切换按钮
 
@@ -169,6 +167,8 @@
               })
             }
           )
+        } else if ($options.showBtn == 'flase') {
+          $this.find('.Gma-Focus-btn').remove()
         }
 
         // 判断切换索引是否显示
