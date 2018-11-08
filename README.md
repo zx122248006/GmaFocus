@@ -5,29 +5,29 @@
 # 结构
 
 ```
-	<div id="Gma-wrap">
-		<div class="Gma-focus">
-			<ul class="centerbox">
-				<li>
-					<a href="javascript:void(0)">
-					
-					</a>
-				</li>
-				<li>
-					<a href="javascript:void(0)">
-					
-					</a>
-				</li>
-				<li>
-					<a href="javascript:void(0)">
-				
-					</a>
-				</li>
-			</ul>
-		</div>
-		<a href="javascript:void(0)" class="Gma-Focus-btn prev"></a>
-		<a href="javascript:void(0)" class="Gma-Focus-btn next"></a>
-	</div>
+<div id="Gma-wrap">
+  <div class="Gma-focus">
+    <ul class="centerbox">
+      <li>
+        <a href="javascript:void(0)">
+        
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+        
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+      
+        </a>
+      </li>
+    </ul>
+  </div>
+  <a href="javascript:void(0)" class="Gma-Focus-btn prev"></a>
+  <a href="javascript:void(0)" class="Gma-Focus-btn next"></a>
+</div>
 ```
 
 # 调用方式

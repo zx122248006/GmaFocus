@@ -54,14 +54,17 @@
 
 	}
 
+
 	.Gma-Focus-btn {
-		width: 80px;
+		/*切换按钮的样式*/
+		width: 60px;
 		height: 80px;
-		display: block;
-		opacity: 0;
-		/*针对ie浏览器的透明度*/
+		display: flex;
+		font-size: 50px;
+		align-items: center;
+		background: rgba(0, 0, 0, 0.5);
 		filter: alpha(opacity=0);
-		background: darkred;
+		color: #fff;
 		z-index: 9999;
 		position: absolute;
 		top: 45%;
@@ -70,10 +73,12 @@
 
 	.prev {
 		left: 0;
+		justify-content: flex-start;
 	}
 
 	.next {
 		right: 0;
+		justify-content: flex-end;
 	}
 
 	.fbtn {

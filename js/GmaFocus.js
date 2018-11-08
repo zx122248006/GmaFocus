@@ -123,7 +123,7 @@
 
           let $prev = $this.find('.prev'); //在动态增加切换按钮之后获取切换按钮
           let $next = $this.find('.next'); //在动态增加切换按钮之后获取切换按钮
-
+      
           $next.click(function () {
             if (!$centerbox.is(':animated')) {
               i++;
@@ -152,10 +152,10 @@
           $this.hover(
             function () {
               $prev.stop().animate({
-                opacity: '0.5'
+                opacity: '1'
               });
               $next.stop().animate({
-                opacity: '0.5'
+                opacity: '1'
               })
             },
             function () {
