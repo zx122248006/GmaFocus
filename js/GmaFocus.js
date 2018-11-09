@@ -152,10 +152,10 @@
           $this.hover(
             function () {
               $prev.stop().animate({
-                opacity: '1'
+                opacity: '0.8'
               });
               $next.stop().animate({
-                opacity: '1'
+                opacity: '0.8'
               })
             },
             function () {

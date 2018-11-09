@@ -55,13 +55,14 @@
 }
 
 #Gma-wrap .Gma-Focus-btn {
-  /*切换按钮的样式*/
+  /* 切换按钮的样式 */
   width: 60px;
   height: 80px;
   display: flex;
   font-size: 50px;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
   filter: alpha(opacity=0);
   color: #fff;
   z-index: 9999;
@@ -81,6 +82,7 @@
 }
 
 #Gma-wrap .fbtn {
+  /* 索引的样式*/
   width: auto;
   height: 10px;
   position: absolute;
