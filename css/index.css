@@ -103,6 +103,8 @@
   background: #333;
   transition: all 0.5s;
   position: relative;
+  border: 1px solid #ccc;
+  border-radius: 50%;
 }
 
 #Gma-wrap .fbtn ul li a {
