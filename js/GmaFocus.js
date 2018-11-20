@@ -16,7 +16,7 @@
       autoMove: 'true', //是否自动移动
       showBtn: 'true', //是否显示切换按钮
       showIndex: 'true', //是否显示切换索引
-      autoTime: '2500', //自动切换的时间
+      autoTime: '3500', //自动切换的时间
       clickTime: '500', //点击切换按钮切换的时间
       imgWidth: '800px', //图片默认宽度
       imgHeight: '500px', //图片默认高度
@@ -74,7 +74,7 @@
 
         // 变换的主要函数
         function changeto(num) {
-          let $fbtn = $('.fbtn ul li'); //获取切换索引
+          let $fbtn = $this.find('.fbtn ul li'); //获取切换索引
           let $go = num * $imgWidth;
 
           if ($options.effect == 'slide') { //判断切换的效果为滑动时
@@ -176,16 +176,16 @@
 
           // 显示索引，动态增加索引栏目
           $this.find('.Gma-focus').append('<div class="fbtn"></div>').find('.fbtn').append('<ul></ul>');
-          $liNum = $('.centerbox li');
+          $liNum = $this.find('.centerbox li');
           for (let i = 0; i < $liNum.length; i++) {
             if (i == 0) {
-              $('.fbtn ul').append('<li class="on"><a href="javascript:void(0)"></a></li>');
+              $this.find('.fbtn ul').append('<li class="on"><a href="javascript:void(0)"></a></li>');
             } else {
-              $('.fbtn ul').append('<li><a href="javascript:void(0)"></a></li>');
+              $this.find('.fbtn ul').append('<li><a href="javascript:void(0)"></a></li>');
             }
           }
 
-          let $fbtn = $('.fbtn ul li');
+          let $fbtn = $this.find('.fbtn ul li');
           $fbtn.on('click', function () {
             let index = $(this).index();
             changeto(index);

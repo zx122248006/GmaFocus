@@ -6,34 +6,34 @@
   text-decoration: none;
 }
 
-#Gma-wrap {
+.Gma-wrap {
   margin: 0 auto;
   position: relative;
 }
 
-#Gma-wrap .Gma-focus {
+.Gma-wrap .Gma-focus {
   overflow: hidden;
   position: relative;
 }
 
-#Gma-wrap .Gma-focus .centerbox {
+.Gma-wrap .Gma-focus .centerbox {
   position: relative;
   left: 0px;
 }
 
-#Gma-wrap .Gma-focus .centerbox li {
+.Gma-wrap .Gma-focus .centerbox li {
   float: left;
   display: block;
 }
 
-#Gma-wrap .Gma-focus .centerbox li a {
+.Gma-wrap .Gma-focus .centerbox li a {
   width: 100%;
   height: 100%;
   display: block;
   position: relative;
 }
 
-#Gma-wrap .Gma-focus .centerbox li a img {
+.Gma-wrap .Gma-focus .centerbox li a img {
   width: 100%;
   height: 100%;
   display: block;
@@ -41,7 +41,7 @@
   border: none;
 }
 
-#Gma-wrap .Gma-focus .centerbox li a p {
+.Gma-wrap .Gma-focus .centerbox li a p {
   position: absolute;
   width: 100%;
   height: 50px;
@@ -54,7 +54,7 @@
   align-items: center;
 }
 
-#Gma-wrap .Gma-Focus-btn {
+.Gma-wrap .Gma-Focus-btn {
   /* 切换按钮的样式 */
   width: 60px;
   height: 80px;
@@ -71,17 +71,17 @@
   margin-top: -50px;
 }
 
-#Gma-wrap .prev {
+.Gma-wrap .prev {
   left: 0;
   justify-content: flex-start;
 }
 
-#Gma-wrap .next {
+.Gma-wrap .next {
   right: 0;
   justify-content: flex-end;
 }
 
-#Gma-wrap .fbtn {
+.Gma-wrap .fbtn {
   /* 索引的样式*/
   width: auto;
   height: 10px;
@@ -91,11 +91,11 @@
   z-index: 999;
 }
 
-#Gma-wrap .fbtn ul {
+.Gma-wrap .fbtn ul {
   width: 100%;
 }
 
-#Gma-wrap .fbtn ul li {
+.Gma-wrap .fbtn ul li {
   width: 10px;
   height: 10px;
   margin-left: 5px;
@@ -107,17 +107,17 @@
   border-radius: 50%;
 }
 
-#Gma-wrap .fbtn ul li a {
+.Gma-wrap .fbtn ul li a {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-#Gma-wrap .fbtn ul li.on {
+.Gma-wrap .fbtn ul li.on {
   background: #ccc;
   transition: all 0.5s;
 }
 
-#Gma-wrap .fbtn ul li:first-child {
+.Gma-wrap .fbtn ul li:first-child {
   margin-left: 0;
 }
