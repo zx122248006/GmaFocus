@@ -18,6 +18,7 @@
       showIndex: 'true', //是否显示切换索引
       autoTime: '3500', //自动切换的时间
       clickTime: '500', //点击切换按钮切换的时间
+      indexColor:'#ccc',//索引按钮的默认颜色
       imgWidth: '800px', //图片默认宽度
       imgHeight: '500px', //图片默认高度
     }
