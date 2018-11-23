@@ -18,7 +18,6 @@
       showIndex: 'true', //是否显示切换索引
       autoTime: '3500', //自动切换的时间
       clickTime: '500', //点击切换按钮切换的时间
-      indexColor:'#ccc',//索引按钮的默认颜色
       imgWidth: '800px', //图片默认宽度
       imgHeight: '500px', //图片默认高度
     }
@@ -37,7 +36,7 @@
       let $imgWidth = parseInt(this.options.imgWidth); //获取图片宽度
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
       let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度
-
+      let $indexColor = this.options.indexColor;
       let $fadeTime = 'all ' + ($options.clickTime / 1000) + 's'; //为fade切换定义点击时切换的时间
 
       // 根据传入的值，设置css功能区
@@ -124,7 +123,7 @@
 
           let $prev = $this.find('.prev'); //在动态增加切换按钮之后获取切换按钮
           let $next = $this.find('.next'); //在动态增加切换按钮之后获取切换按钮
-      
+
           $next.click(function () {
             if (!$centerbox.is(':animated')) {
               i++;
@@ -187,6 +186,7 @@
           }
 
           let $fbtn = $this.find('.fbtn ul li');
+
           $fbtn.on('click', function () {
             let index = $(this).index();
             changeto(index);
@@ -194,6 +194,8 @@
             // 返回改变的i值
             return i = index;
           });
+
+
         }
 
         // 判断是否自动切换
