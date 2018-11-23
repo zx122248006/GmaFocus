@@ -18,6 +18,7 @@
       showIndex: 'true', //是否显示切换索引
       autoTime: '3500', //自动切换的时间
       clickTime: '500', //点击切换按钮切换的时间
+      indexColorCss: 'on', //索引按钮的默认颜色
       imgWidth: '800px', //图片默认宽度
       imgHeight: '500px', //图片默认高度
     }
@@ -36,7 +37,12 @@
       let $imgWidth = parseInt(this.options.imgWidth); //获取图片宽度
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
       let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度
-      let $indexColor = this.options.indexColor;
+
+
+
+      let $indexColorCss = this.options.indexColorCss;
+
+
       let $fadeTime = 'all ' + ($options.clickTime / 1000) + 's'; //为fade切换定义点击时切换的时间
 
       // 根据传入的值，设置css功能区
@@ -88,7 +94,16 @@
               'opacity': '0'
             })
           }
-          $fbtn.removeClass('on').eq(num).addClass('on');
+
+
+          // 
+          // 
+          // 
+          $fbtn.removeClass($indexColorCss).eq(num).addClass($indexColorCss);
+
+
+
+
         }
 
       }
@@ -179,7 +194,16 @@
           $liNum = $this.find('.centerbox li');
           for (let i = 0; i < $liNum.length; i++) {
             if (i == 0) {
-              $this.find('.fbtn ul').append('<li class="on"><a href="javascript:void(0)"></a></li>');
+              // 
+              // 
+              // 
+              $this.find('.fbtn ul').append('<li class="' + $indexColorCss + '"><a href="javascript:void(0)"></a></li>');
+
+              // 
+              // 
+              // 
+
+
             } else {
               $this.find('.fbtn ul').append('<li><a href="javascript:void(0)"></a></li>');
             }
@@ -190,7 +214,17 @@
           $fbtn.on('click', function () {
             let index = $(this).index();
             changeto(index);
-            $fbtn.removeClass('on').eq(index).addClass('on');
+
+
+            // 
+            // 
+            // 
+            $fbtn.removeClass($indexColorCss).eq(index).addClass($indexColorCss);
+            // 
+            // 
+            // 
+
+            
             // 返回改变的i值
             return i = index;
           });
