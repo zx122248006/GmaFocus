@@ -39,23 +39,11 @@
 ```
 
 # 调用方式
-1.当页面中只有一个focus时
-```
-$('.Gma-wrap').GmaFocus()
-```
+使用id的方式进行调用
+```$('#Gma-wrap1').left_Focus() ```
 
-2.当页面中有多个focus时，需要在则需要在```<div id="Gma-wrap">``` 中增加别的id名用于区分。
-例如
-```
-<div class="Gma-wrap" id="Gma-1">
-</div>
+当页面中有多个focus时，需要在则需要在```<div id="#Gma-wrap1">``` 中使用其他的id名用于区分。
 
-```
-相应的调用方式也改变
-
-```
-$('#Gma-1').left_Focus()
-```
 
 # 样式
 
