@@ -7,6 +7,7 @@
 
 
 // 改变left值的焦点轮播图
+;
 (function ($, windwow, document, undefind) {
   // 定义构造函数，设置默认值
   let Gma_Focus = function (element, option) {
@@ -18,7 +19,7 @@
       showIndex: 'true', //是否显示切换索引
       autoTime: '3500', //自动切换的时间
       clickTime: '500', //点击切换按钮切换的时间
-      indexColorCss: 'on', //索引按钮的默认颜色
+      iColorName: 'on', //索引按钮的默认颜色的类名
       imgWidth: '800px', //图片默认宽度
       imgHeight: '500px', //图片默认高度
     }
@@ -36,14 +37,13 @@
       let $ulNum = $this.find('.centerbox li').length; //获取焦点轮播图的图片数量
       let $imgWidth = parseInt(this.options.imgWidth); //获取图片宽度
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
-      let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度
-
-
-
-      let $indexColorCss = this.options.indexColorCss;
-
-
+      let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度    
       let $fadeTime = 'all ' + ($options.clickTime / 1000) + 's'; //为fade切换定义点击时切换的时间
+
+      // 测试内容开始
+      let $iColorName = this.options.iColorName; //获取默认的切换索引按钮颜色类名
+      // 测试内容结束
+
 
       // 根据传入的值，设置css功能区
       {
@@ -95,17 +95,8 @@
             })
           }
 
-
-          // 
-          // 
-          // 
-          $fbtn.removeClass($indexColorCss).eq(num).addClass($indexColorCss);
-
-
-
-
+          $fbtn.removeClass($iColorName).eq(num).addClass($iColorName);
         }
-
       }
 
       // 主要判断功能区
@@ -132,12 +123,11 @@
           })
         }
 
-
         // 判断切换按钮是否显示
         if ($options.showBtn == 'true') {
 
           let $prev = $this.find('.prev'); //在动态增加切换按钮之后获取切换按钮
-          let $next = $this.find('.next'); //在动态增加切换按钮之后获取切换按钮
+          let $next = $this.find('.next');
 
           $next.click(function () {
             if (!$centerbox.is(':animated')) {
@@ -194,15 +184,8 @@
           $liNum = $this.find('.centerbox li');
           for (let i = 0; i < $liNum.length; i++) {
             if (i == 0) {
-              // 
-              // 
-              // 
-              $this.find('.fbtn ul').append('<li class="' + $indexColorCss + '"><a href="javascript:void(0)"></a></li>');
 
-              // 
-              // 
-              // 
-
+              $this.find('.fbtn ul').append('<li class="' + $iColorName + '"><a href="javascript:void(0)"></a></li>');
 
             } else {
               $this.find('.fbtn ul').append('<li><a href="javascript:void(0)"></a></li>');
@@ -214,17 +197,7 @@
           $fbtn.on('click', function () {
             let index = $(this).index();
             changeto(index);
-
-
-            // 
-            // 
-            // 
-            $fbtn.removeClass($indexColorCss).eq(index).addClass($indexColorCss);
-            // 
-            // 
-            // 
-
-            
+            $fbtn.removeClass($iColorName).eq(index).addClass($iColorName);
             // 返回改变的i值
             return i = index;
           });

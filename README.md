@@ -1,4 +1,4 @@
-![picture_1](logo_design.png)
+![image](logo_design.png)
 
 # 说明
 
@@ -93,4 +93,4 @@ $('#Gma-wrap1').left_Focus({
 | clickTime | 500 | 点击切换按钮切换的时间 | 500ms | 无 |
 | imgWidth | 800px | 图片默认宽度 | 1400px | 无 |
 | imgHeight | 500px | 图片默认高度 | 500px | 无 |
-| indexColorCss | on | 切换索引默认引用样式 | 具体见‘切换索引’说明 | 无 |
+| indexColorCss | on | 切换索引默认引用类名 | 具体见‘切换索引’说明 | 无 |
