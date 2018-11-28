@@ -3,6 +3,7 @@
  * @email   zx122248006@qq.com
  * @date    2018年10月30日
  * @copy    Copyright © Powered by zx122248006
+ * @v 1.1
  ********/
 
 
@@ -44,6 +45,12 @@
       let $iColorName = this.options.iColorName; //获取默认的切换索引按钮颜色类名
       // 测试内容结束
 
+      // 当图片数量只有一张时，取消切换、不显示切换按钮和索引
+      if ($ulNum == 1) {
+        $options.autoMove = 'flase';
+        $options.showBtn = 'flase';
+        $options.showIndex = 'flase'
+      }
 
       // 根据传入的值，设置css功能区
       {
@@ -218,7 +225,10 @@
             }
           )
         }
+
+
       }
+
     },
   }
 
