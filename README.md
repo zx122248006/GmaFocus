@@ -33,8 +33,8 @@
       </li>
     </ul>
   </div>
-  <a href="javascript:void(0)" class="Gma-Focus-btn prev"></a>
-  <a href="javascript:void(0)" class="Gma-Focus-btn next"></a>
+	<a href="javascript:void(0)" class="Gma-Focus-btn prev icon-next-style2"></a>
+	<a href="javascript:void(0)" class="Gma-Focus-btn next icon-prev-style2"></a>
 </div>
 ```
 
