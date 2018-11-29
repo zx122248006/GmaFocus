@@ -52,6 +52,11 @@
         $options.showIndex = 'flase'
       }
 
+      // 当图片数量为2时，设置切换效果默认为淡入淡出。
+      if ($ulNum == 2 ) {
+        $options.effect='fade';
+      }
+
       // 根据传入的值，设置css功能区
       {
         $this.find('.centerbox').css('width', $ulwidth) //根据图片数量设置ul的宽度
