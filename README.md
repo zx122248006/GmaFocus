@@ -70,9 +70,11 @@
 $('#Gma-wrap1').left_Focus({
   indexColorCss:'on-red'
 })
+```
 
 下面是css
 
+```
 .on-red {
   background:red;
 }
@@ -101,4 +103,4 @@ $('#Gma-wrap1').left_Focus({
 2. 当图片数量等于 【2】 时，默认切换效果为淡入淡出效果。
 
 ## 预览地址
- [Demo](https://zx122248006.github.io/GmaFocus/)
+<a href="https://zx122248006.github.io/GmaFocus" target="_blank">Demo</a>
