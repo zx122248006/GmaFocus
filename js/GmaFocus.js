@@ -18,7 +18,6 @@
       autoMove: 'true', //是否自动移动
       showBtn: 'true', //是否显示切换按钮
       showIndex: 'true', //是否显示切换索引
-      triggerEffect: 'click', //索引的切换效果
       autoTime: '3500', //自动切换的时间
       clickTime: '500', //点击切换按钮切换的时间
       iColorName: 'on', //索引按钮的默认颜色的类名
@@ -36,7 +35,6 @@
       let $autoTime = this.options.autoTime; //定义变量存储自动切换的时间
       let $this = this.$elemnet; //将DOM 设置为常量，便于调用
       let $options = this.options; //便于调用 options 
-      let $triggerEffect = this.options.triggerEffect; //获取索引的切换效果
       let $ulNum = $this.find('.centerbox li').length; //获取焦点轮播图的图片数量
       let $imgWidth = parseInt(this.options.imgWidth); //获取图片宽度
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
@@ -58,13 +56,6 @@
       if ($ulNum == 2) {
         $options.effect = 'fade';
       }
-
-
-      // 当索引的切换效果不为 click 或者 mouseover 时，设置索引切换效果为 click
-      if ($triggerEffect != 'click' || $triggerEffect != 'mouseover') {
-        $triggerEffect = 'click'
-      }
-
 
       // 根据传入的值，设置css功能区
       {
@@ -216,7 +207,7 @@
           let $fbtn = $this.find('.fbtn ul li');
 
           // 当鼠标在切换索引时的效果
-          $fbtn.on($triggerEffect, function () {
+          $fbtn.on('click', function () {
             let index = $(this).index();
             changeto(index);
             $fbtn.removeClass($iColorName).eq(index).addClass($iColorName);
