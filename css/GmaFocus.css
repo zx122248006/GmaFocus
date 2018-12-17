@@ -71,6 +71,10 @@
   margin-top: -50px;
 }
 
+.Gma-wrap .Gma-Focus-btn :link {
+  text-decoration: none;
+}
+
 .Gma-wrap .prev {
   left: 0;
   justify-content: flex-start;
