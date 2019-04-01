@@ -20,7 +20,6 @@
       showIndex: 'true', //是否显示切换索引
       autoTime: '3500', //自动切换的时间
       clickTime: '500', //点击切换按钮切换的时间
-      iColorName: 'on', //索引按钮的默认颜色的类名
       imgWidth: '800px', //图片默认宽度
       imgHeight: '500px', //图片默认高度
     }
@@ -40,10 +39,6 @@
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
       let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度    
       let $fadeTime = 'all ' + ($options.clickTime / 1000) + 's'; //为fade切换定义点击时切换的时间
-
-      // 测试内容开始
-      let $iColorName = this.options.iColorName; //获取默认的切换索引按钮颜色类名
-      // 测试内容结束
 
       // 当图片数量只有一张时，取消切换、不显示切换按钮和索引
       if ($ulNum == 1) {
