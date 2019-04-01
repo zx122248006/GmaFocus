@@ -39,6 +39,8 @@
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
       let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度    
       let $fadeTime = 'all ' + ($options.clickTime / 1000) + 's'; //为fade切换定义点击时切换的时间
+      let $iColorName = 'on' //定义切换索引的类名
+
 
       // 当图片数量只有一张时，取消切换、不显示切换按钮和索引
       if ($ulNum == 1) {
