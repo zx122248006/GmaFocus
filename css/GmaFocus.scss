@@ -70,6 +70,10 @@
 		position: absolute;
 		top: 45%;
 		margin-top: -50px;
+
+		:link {
+			text-decoration: none;
+		}
 	}
 
 	.prev {
