@@ -1,101 +1,16 @@
-![image](logo_design.png)
-
-## 说明
-
-
-## 结构
-
-```
-<div class="Gma-wrap" id="Gma-wrap1">
-  <div class="Gma-focus">
-    <ul class="centerbox">
-      <li>
-        <a href="javascript:void(0)">
-        
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-        
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-      
-        </a>
-      </li>
-    </ul>
-  </div>
-    <a href="javascript:void(0)" class="Gma-Focus-btn Focus-prev"></a>
-    <a href="javascript:void(0)" class="Gma-Focus-btn Focus-next"></a>
-</div>
-```
-
-## 调用方式
-
-使用id的方式进行调用,或者使用class的方式进行调用皆可。
-
-```
-  $('#Gma-wrap1').GmaFocus({
-    imgWidth: '510', //定义宽度
-    imgHeight: '450', //定义高度
-  })
-```
-
-
-## 样式
-
-使用了scss预编译的样式。也提供了编译之后的css样式。需要修改切换按钮样式，或是切换索引就可以修改scss或者css样式。
-
-切换按钮的样式为`#Gma-wrap .Gma-Focus-btn`
-切换索引的样式为`.fbtn`
-
-## 切换按钮
-
-
-通过`showBtn:'false/true'`来控制是否需要切换按钮
-
-## 切换索引
-
-通过`showIndex:'false/true'`来控制是否需要切换按钮
-
-
-
-## 可选参数
-| 名称 | 默认值 | 说明 | 默认值说明 | 可选数值 |
-| ------ | ------ | ------ | ------ | ------ |
-| effect | slide | 默认切换效果 | 默认左右切换 | fade |
-| autoMove | true | 是否自动切换 | 默认自动切换 | 无 |
-| showBtn | true | 是否显示切换按钮 | 默认显示切换按钮 | flase |
-| showIndex | true | 是否显示切换索引 | 默认显示切换索引 | 无 |
-| autoTime | 3500 | 自动切换的时间 | 3500ms | 无 |
-| clickTime | 500 | 点击切换按钮切换的时间 | 500ms | 无 |
-| imgWidth | 800px | 图片默认宽度 | 1400px | 无 |
-| imgHeight | 500px | 图片默认高度 | 500px | 无 |
-
-## 特别说明 
-1. 当图片数量等于 【1】 时，默认不显示切换按钮、切换索引，无切换效果。
-
-2. 当图片数量等于 【2】 时，默认切换效果为淡入淡出效果。
-
-## 预览地址
-<a href="https://zx122248006.github.io/GmaFocus" target="_blank">Demo</a>
-
-
-
 
 ![image](logo_design.png)
 
 
-#版本 V1.1
+# 版本 V1.1
 
-#更新说明
+# 更新说明
 + 修改了切换按钮的样式；
 + 将原本使用字体作为切换按钮改变为使用图片作为切换按钮，修改起来更方便；
 + 可能修复了一些BUG；
 ___
 
-#简介
+# 简介
 
 + 可以在调用时定义轮播图中图片的宽高，在一些特定环境使用比较方便。
 + 将需要引用的样式文件和js文件上传到github中，方便调用，不需要使用时重复复制调用。
@@ -104,7 +19,7 @@ ___
 ___
 
 
-#使用方式
+# 使用方式
 
 1. 引用位置及引用地址
 + 在`<head></head>`中的合适位置引入css
@@ -160,7 +75,7 @@ ___
 
 ```
 ___
-#说明
+# 说明
 
 1. 样式说明
 + 切换按钮
@@ -188,6 +103,6 @@ ___
    
 ___
 
-#预览地址
+# 预览地址
 
 <a href="https://zx122248006.github.io/GmaFocus" target="_blank">Demo</a>
