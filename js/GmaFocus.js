@@ -39,8 +39,12 @@
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
       let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度    
       let $fadeTime = 'all ' + ($options.clickTime / 1000) + 's'; //为fade切换定义点击时切换的时间
-      let $iColorName = 'on' //定义切换索引的类名
+      let $iColorName = 'on'; //定义切换索引的类名
 
+      if ($autoTime <= 1000) {
+        $autoTime = 2500;
+      }
+      document.onvisibilitychange=function(){ console.log("hidden"+":"+document.hidden); console.log("visibilityState"+":"+document.visibilityState); }
 
       // 当图片数量只有一张时，取消切换、不显示切换按钮和索引
       if ($ulNum == 1) {
@@ -80,20 +84,13 @@
           }
         }
 
-        // 设置定时器
-        function setAutoChange() {
-          return setInterval(function () {
-            autoChange();
-          }, $autoTime)
-        }
-
         // 变换的主要函数
         function changeto(num) {
           let $fbtn = $this.find('.fbtn ul li'); //获取切换索引
           let $go = num * $imgWidth;
 
           if ($options.effect == 'slide') { //判断切换的效果为slide时
-            $centerbox.animate({
+            $centerbox.stop(true,true).animate({
               left: '-' + $go + 'px'
             }, $clickTime);
           } else if ($options.effect == 'fade') { //判断切换效果为fade时
@@ -163,20 +160,22 @@
             }
           })
 
+          
+
           $this.hover(
             function () {
-              $prev.stop().animate({
+              $prev.stop(true,true).animate({
                 opacity: '0.8'
               });
-              $next.stop().animate({
+              $next.stop(true,true).animate({
                 opacity: '0.8'
               })
             },
             function () {
-              $prev.stop().animate({
+              $prev.stop(true,true).animate({
                 opacity: '0'
               });
-              $next.stop().animate({
+              $next.stop(true,true).animate({
                 opacity: '0'
               })
             }
@@ -214,16 +213,40 @@
 
         }
 
+        // 调试中
         // 判断是否自动切换
         if ($options.autoMove == 'true') {
-          let stopAutoChange = setAutoChange()
+          b = 0;
+
+          var autochane = setInterval(function () {
+            b++;
+            console.log(b);
+            autoChange();
+          }, $autoTime)
+
+          function stop() {
+            clearInterval(autochane)
+          }
+
+          console.log('设置定时器')
+
           // 鼠标移入移出时，定时器的开关
           $this.hover(
             function () {
-              clearInterval(stopAutoChange)
+              stop()
+              console.log('停止定时器')
             },
             function () {
-              stopAutoChange = setAutoChange()
+              console.log('设置定时器')
+
+
+              autochane = setInterval(function () {
+                b++;
+                console.log(b);
+                autoChange();
+              }, $autoTime)
+
+
             }
           )
         }

@@ -2,18 +2,11 @@
 
 ## 说明
 
-1.网上的焦点轮播图的插件很多，但是还是想要自己造轮子试试，同时也是为了方便自己以后写页面，所以就有了这个焦点轮播图的插件。
-
-2.目前只有两种切换方式，淡入淡出和向左滑动。并且目前需要2.依赖jQuery才能够正常运行。目前版本是1.0。
-
-3.还没有正式在工作环境中使用过，可能存在一定的BUG。
-
-4.另外这个插件的兼容性不好。
 
 ## 结构
 
 ```
-<div class="Gma-wrap">
+<div class="Gma-wrap" id="Gma-wrap1">
   <div class="Gma-focus">
     <ul class="centerbox">
       <li>
@@ -33,56 +26,39 @@
       </li>
     </ul>
   </div>
-	<a href="javascript:void(0)" class="Gma-Focus-btn prev icon-next-style2"></a>
-	<a href="javascript:void(0)" class="Gma-Focus-btn next icon-prev-style2"></a>
+    <a href="javascript:void(0)" class="Gma-Focus-btn Focus-prev"></a>
+    <a href="javascript:void(0)" class="Gma-Focus-btn Focus-next"></a>
 </div>
 ```
 
 ## 调用方式
 
-使用id的方式进行调用
-``` $('#Gma-wrap1').left_Focus() ```
+使用id的方式进行调用,或者使用class的方式进行调用皆可。
 
-当页面中有多个focus时，需要在则需要在```<div id="#Gma-wrap1">``` 中使用其他的id名用于区分。
+```
+  $('#Gma-wrap1').GmaFocus({
+    imgWidth: '510', //定义宽度
+    imgHeight: '450', //定义高度
+  })
+```
 
 
 ## 样式
 
 使用了scss预编译的样式。也提供了编译之后的css样式。需要修改切换按钮样式，或是切换索引就可以修改scss或者css样式。
+
 切换按钮的样式为`#Gma-wrap .Gma-Focus-btn`
 切换索引的样式为`.fbtn`
 
 ## 切换按钮
 
-切换按钮使用的是字体图标的嵌入方式，使用时，需要在`<head>`引入`<link rel="stylesheet" href="./css/font-style.css">`
 
-再在切换按钮的样式中加入`	<a href="javascript:void(0)" class="Gma-Focus-btn prev icon-next-style2"></a>`
-
-`icon-next-style2`的样式
+通过`showBtn:'false/true'`来控制是否需要切换按钮
 
 ## 切换索引
 
-`indexColorCss` 用于改变切换索引的颜色，当页面中存在两个以上的轮播图时，可能需要使用不同颜色的切换索引。使用时需要在`GmaFocus.css`文件中新增一个类名，定义`background`。
-再进行引入。
+通过`showIndex:'false/true'`来控制是否需要切换按钮
 
-例如
-```
-$('#Gma-wrap1').left_Focus({
-  indexColorCss:'on-red'
-})
-```
-
-下面是css
-
-```
-.on-red {
-  background:red;
-}
-
-```
-【特别注意】
-
-如果没有定义类名，但是却引用了一个不存在的类名，切换索引将不会显示颜色。
 
 
 ## 可选参数
@@ -103,4 +79,115 @@ $('#Gma-wrap1').left_Focus({
 2. 当图片数量等于 【2】 时，默认切换效果为淡入淡出效果。
 
 ## 预览地址
+<a href="https://zx122248006.github.io/GmaFocus" target="_blank">Demo</a>
+
+
+
+
+![image](logo_design.png)
+
+
+#版本 V1.1
+
+#更新说明
++ 修改了切换按钮的样式；
++ 将原本使用字体作为切换按钮改变为使用图片作为切换按钮，修改起来更方便；
++ 可能修复了一些BUG；
+___
+
+#简介
+
++ 可以在调用时定义轮播图中图片的宽高，在一些特定环境使用比较方便。
++ 将需要引用的样式文件和js文件上传到github中，方便调用，不需要使用时重复复制调用。
++ 需要修改样式时，新建一个样式文件覆盖原本的即可，或者将原本的样式文件复制到本地修改后使用。
+
+___
+
+
+#使用方式
+
+1. 引用位置及引用地址
++ 在`<head></head>`中的合适位置引入css
+`<link rel="stylesheet" href="./css/GmaFocus.css">`
+___
++ 在`</body>`之后引入jQuery
+`<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>`
+___
++ 在jQuery之后引入js
+`<script src="./js/GmaFocus.js"></script>`
+___
+
+2. 结构预览
+
+```
+<div class="Gma-wrap" id="Gma-wrap1">
+    <div class="Gma-focus">
+      <ul class="centerbox">
+        <li>
+          <a href="javascript:void(0)">
+            <img src="https://placehold.it/2000x3000//332331?text=HELLO%20WORLD" alt="">
+            <p>肉坏特比么棋幸代黑错变编习罗皮？担帮万！</p>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            <img src="https://placehold.it/2000x3000//332331?text=HELLO%20WORLD" alt="">
+            <p>肉坏特比么棋幸代黑错变编习罗皮？担帮万！</p>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            <img src="https://placehold.it/2000x3000//332331?text=HELLO%20WORLD" alt="">
+            <p>肉坏特比么棋幸代黑错变编习罗皮？担帮万！</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <a href="javascript:void(0)" class="Gma-Focus-btn prev"></a>
+    <a href="javascript:void(0)" class="Gma-Focus-btn next"></a>
+</div>
+```
+___
+3. 调用设置
+
+```
+<script>
+  $('#Gma-wrap1').GmaFocus({
+    effect: 'slide',
+    autoTime: '500'
+  })
+</script>
+
+```
+___
+#说明
+
+1. 样式说明
++ 切换按钮
++ 切换索引
+
+___
+
+2. 可选参数
+
+| 名称 | 默认值 | 说明 | 默认值说明 | 可选数值 |
+| ------ | ------ | ------ | ------ | ------ |
+| effect | slide | 默认切换效果 | 默认左右切换 | fade |
+| autoMove | true | 是否自动切换 | 默认自动切换 | 无 |
+| showBtn | true | 是否显示切换按钮 | 默认显示切换按钮 | flase |
+| showIndex | true | 是否显示切换索引 | 默认显示切换索引 | 无 |
+| autoTime | 3500 | 自动切换的时间 | 3500ms | 无 |
+| clickTime | 500 | 点击切换按钮切换的时间 | 500ms | 无 |
+| imgWidth | 800px | 图片默认宽度 | 1400px | 无 |
+| imgHeight | 500px | 图片默认高度 | 500px | 无 |
+
+___
+3. 特别说明
+   + 当图片数量等于 【1】 时，默认不显示切换按钮、切换索引，无切换效果。
+   + 当图片数量等于 【2】 时，默认切换效果为淡入淡出效果。
+   
+___
+
+#预览地址
+
 <a href="https://zx122248006.github.io/GmaFocus" target="_blank">Demo</a>
