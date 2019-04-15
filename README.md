@@ -2,7 +2,7 @@
 ![image](logo_design.png)
 
 
-## 版本 V1.1
+## 版本 V1.2
 
 ## 更新说明
 + 修改了切换按钮的样式；
@@ -102,6 +102,14 @@ ___
    + 当图片数量等于 【2】 时，默认切换效果为淡入淡出效果。
    
 ___
+
+## 在线引用地址
+
++ css 线上引用地址 
+`https://zx122248006.github.io/GmaFocus/css/GmaFocus.css`
+
++ js 线上引用地址
+`https://zx122248006.github.io/GmaFocus/js/GmaFocus.js`
 
 ## 预览地址
 
