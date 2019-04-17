@@ -44,7 +44,10 @@
       if ($autoTime <= 1000) {
         $autoTime = 2500;
       }
-      document.onvisibilitychange=function(){ console.log("hidden"+":"+document.hidden); console.log("visibilityState"+":"+document.visibilityState); }
+      document.onvisibilitychange = function () {
+        console.log("hidden" + ":" + document.hidden);
+        console.log("visibilityState" + ":" + document.visibilityState);
+      }
 
       // 当图片数量只有一张时，取消切换、不显示切换按钮和索引
       if ($ulNum == 1) {
@@ -85,12 +88,16 @@
         }
 
         // 变换的主要函数
+        // 根据传入的i（num）值，设置每次移动的方向
+        // 并且改变切换按钮的样式，先全部移除，再单独增加
+
         function changeto(num) {
           let $fbtn = $this.find('.fbtn ul li'); //获取切换索引
           let $go = num * $imgWidth;
 
           if ($options.effect == 'slide') { //判断切换的效果为slide时
-            $centerbox.stop(true,true).animate({
+            
+            $centerbox.stop(true, true).animate({
               left: '-' + $go + 'px'
             }, $clickTime);
           } else if ($options.effect == 'fade') { //判断切换效果为fade时
@@ -160,22 +167,22 @@
             }
           })
 
-          
+
 
           $this.hover(
             function () {
-              $prev.stop(true,true).animate({
+              $prev.stop(true, true).animate({
                 opacity: '0.8'
               });
-              $next.stop(true,true).animate({
+              $next.stop(true, true).animate({
                 opacity: '0.8'
               })
             },
             function () {
-              $prev.stop(true,true).animate({
+              $prev.stop(true, true).animate({
                 opacity: '0'
               });
-              $next.stop(true,true).animate({
+              $next.stop(true, true).animate({
                 opacity: '0'
               })
             }
