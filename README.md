@@ -106,10 +106,12 @@ ___
 ## 在线引用地址
 
 + css 线上引用地址 
-`https://zx122248006.github.io/GmaFocus/css/GmaFocus.css`
+`<link rel="stylesheet" href="https://zx122248006.github.io/GmaFocus/css/GmaFocus.css">`
+
 
 + js 线上引用地址
-`https://zx122248006.github.io/GmaFocus/js/GmaFocus.js`
+`<script src="https://zx122248006.github.io/GmaFocus/js/GmaFocus.js"></script>`
+
 
 ## 预览地址
 
