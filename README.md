@@ -67,7 +67,7 @@ ___
 
 ```
 <script>
-  $('##Gma-wrap1').GmaFocus({
+  $('#Gma-wrap1').GmaFocus({
     effect: 'slide',
     autoTime: '500'
   })
