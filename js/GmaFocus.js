@@ -96,16 +96,15 @@
           let $go = num * $imgWidth;
 
           if ($options.effect == 'slide') { //判断切换的效果为slide时
-            
+
             $centerbox.stop(true, true).animate({
               left: '-' + $go + 'px'
             }, $clickTime);
+
           } else if ($options.effect == 'fade') { //判断切换效果为fade时
-            $centerbox.find('li').eq(num).css({
-              'opacity': '1'
-            }).siblings().css({
-              'opacity': '0'
-            })
+
+            $centerbox.find('li').eq(num).fadeIn().siblings().fadeOut()
+
           }
 
           $fbtn.removeClass($iColorName).eq(num).addClass($iColorName);
@@ -118,12 +117,16 @@
         if ($options.effect == 'fade') {
           let $this_Li = $this.find('.centerbox li');
           $this_Li.css({
-            'transition': $fadeTime,
-            'opacity': '0'
+            // 'transition': $fadeTime,
+            // 'opacity': '0'
+            'display':'none'
           })
-          $this_Li.eq(0).css({
-            'opacity': '1'
-          })
+          // $this_Li.eq(0).css({
+          //   'opacity': '1'
+          // })
+
+          $this_Li.eq(0).fadeIn();
+
           $this.css({
             'position': 'relative'
           });
