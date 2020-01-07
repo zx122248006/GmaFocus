@@ -9,7 +9,7 @@
 
 // 改变left值的焦点轮播图
 ;
-(function ($, windwow, document, undefind) {
+(function ($) {
   // 定义构造函数，设置默认值
   let Gma_Focus = function (element, option) {
     this.$elemnet = element;
@@ -34,10 +34,10 @@
       let $autoTime = this.options.autoTime; //定义变量存储自动切换的时间
       let $this = this.$elemnet; //将DOM 设置为常量，便于调用
       let $options = this.options; //便于调用 options 
-      let $ulNum = $this.find('.centerbox li').length; //获取焦点轮播图的图片数量
+      let $liNum = $this.find('.centerbox li').length; //获取焦点轮播图的图片数量
       let $imgWidth = parseInt(this.options.imgWidth); //获取图片宽度
       let $centerbox = $this.find('.centerbox'); //获取焦点轮播图内容部分
-      let $ulwidth = $ulNum * $imgWidth; //根据图片数量定义ul的宽度    
+      let $ulwidth = $liNum * $imgWidth; //根据图片数量定义ul的宽度    
       let $fadeTime = 'all ' + ($options.clickTime / 1000) + 's'; //为fade切换定义点击时切换的时间
       let $iColorName = 'on'; //定义切换索引的类名
 
@@ -50,14 +50,14 @@
       }
 
       // 当图片数量只有一张时，取消切换、不显示切换按钮和索引
-      if ($ulNum == 1) {
+      if ($liNum == 1) {
         $options.autoMove = 'flase';
         $options.showBtn = 'flase';
         $options.showIndex = 'flase'
       }
 
       // 当图片数量为2时，设置切换效果默认为淡入淡出。
-      if ($ulNum == 2) {
+      if ($liNum == 2) {
         $options.effect = 'fade';
       }
 
@@ -77,9 +77,9 @@
 
       //主要功能区域
       {
-        function autoChange() {
+        function autoChange () {
           i++;
-          if (i > $ulNum - 1) {
+          if (i > $liNum - 1) {
             i = 0;
             changeto(i);
           } else {
@@ -91,7 +91,7 @@
         // 根据传入的i（num）值，设置每次移动的方向
         // 并且改变切换按钮的样式，先全部移除，再单独增加
 
-        function changeto(num) {
+        function changeto (num) {
           let $fbtn = $this.find('.fbtn ul li'); //获取切换索引
           let $go = num * $imgWidth;
 
@@ -119,7 +119,7 @@
           $this_Li.css({
             // 'transition': $fadeTime,
             // 'opacity': '0'
-            'display':'none'
+            'display': 'none'
           })
           // $this_Li.eq(0).css({
           //   'opacity': '1'
@@ -148,7 +148,7 @@
           $next.click(function () {
             if (!$centerbox.is(':animated')) {
               i++;
-              if (i > $ulNum - 1) {
+              if (i > $liNum - 1) {
                 i = 0;
                 changeto(i);
               } else {
@@ -161,7 +161,7 @@
             if (!$this.find('.centerbox').is(':animated')) {
               i--;
               if (i < 0) {
-                i = $ulNum - 1;
+                i = $liNum - 1;
                 changeto(i);
 
               } else {
@@ -234,7 +234,7 @@
             autoChange();
           }, $autoTime)
 
-          function stop() {
+          function stop () {
             clearInterval(autochane)
           }
 
@@ -270,4 +270,4 @@
     let Focus = new Gma_Focus(this, options);
     return Focus.Gma_Focus();
   }
-})(jQuery, window, document);
+})(jQuery);
