@@ -248,15 +248,11 @@
             },
             function () {
               console.log('设置定时器')
-
-
               autochane = setInterval(function () {
                 b++;
                 console.log(b);
                 autoChange();
               }, $autoTime)
-
-
             }
           )
         }
