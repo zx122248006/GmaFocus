@@ -42,17 +42,35 @@
         showBtn: 'true'
       }
       this.options = $.extend({}, this.defaults, option)
+
+
     }
 
     GmaFocus () {
-      let i = 0; //定义索引数
+      let $index = 0; //定义索引数
       let $this = this.elemnet //便于调用元素
       let $options = this.options //便于调用options
 
-      let $liNum = $this.innerLi.find('.centerbox li').length //获取li的数量
+      let $liNum = $this.innerLi.length //获取li的数量
       let $imgWidth = parseInt($options.imgWidth) //获取图片的宽度，并且取整
       let $ulwidth = $liNum * $imgWidth//设置ul的宽度为li的数量*li的宽度
 
+
+      let test = {
+        b: {
+          liNum: $liNum,
+          imgWidth: $imgWidth,
+          ulwidth: $ulwidth
+        }
+      }
+
+
+
+      console.log($options)
+
+      $options = $.extend({}, $options, test)
+
+      console.log($options)
 
       setStyle($this, $options, $ulwidth)
       setBtn($this, $options)
@@ -71,7 +89,7 @@
 
     // 设置图片及其容器的大小（由于图片宽高随li改变，所以只设置li的宽高）
     element.innerLi.css({
-      'width': options.imgWidth,
+      'width': options.imgWidth + 'px',
       'height': options.imgHeight
     })
 
@@ -98,13 +116,13 @@
       })
 
       element.innerLi.eq(0).fadeIn();
-
     }
 
   }
 
   // 判断是否显示切换按钮，及点击切换按钮
   function setBtn (element, options) {
+    let i = 0;
 
     let $prev = element.Gma_wrap.find('.prev'); //在动态增加切换按钮之后获取切换按钮
     let $next = element.Gma_wrap.find('.next');
@@ -120,6 +138,20 @@
       )
 
       $next.click(function () {
+        let $liNum = element.innerLi.length //获取li的数量
+        if (!element.centerbox.is(':animated')) {
+          i++;
+          if (i > $liNum - 1) {
+            i = 0;
+            changeto(i, element, options);
+          } else {
+            changeto(i, element, options);
+          }
+        }
+        console.log('1')
+      })
+
+      $prev.click(function () {
         // if (!$centerbox.is(':animated')) {
         //   i++;
         //   if (i > $liNum - 1) {
@@ -129,21 +161,22 @@
         //     changeto(i);
         //   }
         // }
-
-        console.log('1')
+        console.log('2')
       })
     }
   }
 
   // 鼠标移入轮播范围时，显示/隐藏切换按钮
-  function btnHover ($prev, $next, $opacity) {
-    $prev.stop(true, true).animate({
-      opacity: $opacity
+  function btnHover (prev, next, opacityVal) {
+    prev.stop(true, true).animate({
+      'opacity': opacityVal
     });
-    $next.stop(true, true).animate({
-      opacity: $opacity
+    next.stop(true, true).animate({
+      'opacity': opacityVal
     })
   }
+
+
 
 
   $.fn.GmaFocus = function (options) {
@@ -154,8 +187,4 @@
     Focus.GmaFocus();
   }
 })(jQuery);
-
-
-
-
 

@@ -102,11 +102,8 @@
             }, $clickTime);
 
           } else if ($options.effect == 'fade') { //判断切换效果为fade时
-
             $centerbox.find('li').eq(num).fadeIn().siblings().fadeOut()
-
           }
-
           $fbtn.removeClass($iColorName).eq(num).addClass($iColorName);
         }
       }
@@ -202,9 +199,7 @@
           $liNum = $this.find('.centerbox li');
           for (let i = 0; i < $liNum.length; i++) {
             if (i == 0) {
-
               $this.find('.fbtn ul').append('<li class="' + $iColorName + '"><a href="javascript:void(0)"></a></li>');
-
             } else {
               $this.find('.fbtn ul').append('<li><a href="javascript:void(0)"></a></li>');
             }
