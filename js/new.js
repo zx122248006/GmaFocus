@@ -47,18 +47,15 @@
       // 将默认值和传递过来的选项合并
       this.options = $.extend({}, this.defaults, option)
 
-
     }
 
     GmaFocus () {
-      // var $index = 0; //定义索引数
       let $this = this.elemnet //便于调用元素
       let $options = this.options //便于调用options
 
       let $liNum = $this.innerLi.length //获取li的数量
       let $imgWidth = parseInt($options.imgWidth) //获取图片的宽度，并且取整
       let $ulwidth = $liNum * $imgWidth//设置ul的宽度为li的数量*li的宽度
-
 
       // 测试
       let test = {
@@ -73,8 +70,6 @@
       // 将测试选项合并到之前的设置中
       $options = $.extend({}, $options, test)
 
-      console.log($options)
-
       // 调用设置样式的方法
       setStyle($this, $options, $ulwidth)
 
@@ -85,8 +80,27 @@
         setBtn($this, $options)
       }
 
+
+      // document.onvisibilitychange = function () {
+      //   console.log("hidden" + ":" + document.hidden);
+      //   console.log("visibilityState" + ":" + document.visibilityState);
+      // }
+
+      autoMove($this, $options, 'move')
+      intChange($this, $options)
+
+      if ($options.b.liNum == 1) {
+        // $options.autoMove = 'flase';
+        $options.showBtn = 'flase'
+        // $options.showIndex = 'flase'
+      }
     }
+
+
+
+
   }
+
 
   //根据li宽高设置ul的宽度
   function setStyle (ele, options, ulwidth) {
@@ -125,19 +139,16 @@
 
       ele.innerLi.eq(0).fadeIn();
     }
-
   }
 
   // 判断是否显示切换按钮，及点击切换按钮
   function btnClick (ele, opt) {
-    let i = 0;
-
-
 
     let $prev = ele.Gma_wrap.find('.prev'); //在动态增加切换按钮之后获取切换按钮
     let $next = ele.Gma_wrap.find('.next');
+    let $liNum = ele.innerLi.length //获取li的数量
 
-    if (opt.showBtn) {
+    if (opt.showBtn == 'true') {
       ele.Gma_wrap.hover(
         function () {
           btnHover($prev, $next, 0.8)
@@ -146,10 +157,7 @@
           btnHover($prev, $next, 0.0)
         }
       )
-
       $next.click(function () {
-
-        let $liNum = ele.innerLi.length //获取li的数量
         if (!ele.centerbox.is(':animated')) {
           opt.b.$index++;
           if (opt.b.$index > $liNum - 1) {
@@ -162,21 +170,62 @@
       })
 
       $prev.click(function () {
-        // if (!$centerbox.is(':animated')) {
-        //   i++;
-        //   if (i > $liNum - 1) {
-        //     i = 0;
-        //     changeto(i);
-        //   } else {
-        //     changeto(i);
-        //   }
-        // }
+        if (!ele.centerbox.is(':animated')) {
+          opt.b.$index--;
+          if (opt.b.$index < 0) {
+            opt.b.$index = $liNum - 1;
+            changeto(opt.b.$index, ele, opt);
+          } else {
+            changeto(opt.b.$index, ele, opt);
+          }
+        }
       })
     }
   }
 
+  var bc;
+
+  // 设置定时器
+  function autoMove (ele, opt, status) {
+    if (status == 'move') {
+      console.log('move')
+      bc = setInterval(() => {
+        opt.b.$index++;
+        if (opt.b.$index > opt.b.liNum - 1) {
+          opt.b.$index = 0;
+          changeto(opt.b.$index, ele, opt);
+        } else {
+          changeto(opt.b.$index, ele, opt);
+        }
+      }, 1000);
+    }
+
+    if (status == 'stop') {
+      console.log('stop')
+      clearInterval(bc)
+    }
+
+   
+
+  }
+
+
+  // 计时器停止与启动
+  function intChange (ele, opt) {
+    ele.Gma_wrap.hover(function () {
+      console.log('停止定时器')
+      autoMove(ele, opt, 'stop')
+    }, function () {
+      console.log('设置定时器')
+      autoMove(ele, opt, 'move')
+    })
+
+  }
+
+
   // 鼠标移入轮播范围时，显示/隐藏切换按钮
   function btnHover (prev, next, opacityVal) {
+
     prev.stop(true, true).animate({
       'opacity': opacityVal
     });
@@ -205,31 +254,27 @@
 
   function setBtn (ele, opt) {
 
-
-
-
     // 显示索引，动态增加索引栏目
     ele.Gma_wrap.append('<div class="fbtn"></div>').find('.fbtn').append('<ul></ul>');
 
     $liNum = ele.innerLi.length;
     for (let i = 0; i < $liNum; i++) {
       if (i == 0) {
+        // 为第一个索引设置不同的样式
         ele.Gma_wrap.find('.fbtn ul').append('<li class="' + opt.iColorName + '"><a href="javascript:void(0)"></a></li>');
       } else {
         ele.Gma_wrap.find('.fbtn ul').append('<li><a href="javascript:void(0)"></a></li>');
       }
     }
 
-    let $fbtn = ele.Gma_wrap.find('.fbtn ul li');
+    let $sIndexLi = ele.Gma_wrap.find('.fbtn ul li');
 
     // 当鼠标在切换索引时的效果
-    $fbtn.on('click', function () {
+    $sIndexLi.on('click', function () {
       let index = $(this).index();
       changeto(index, ele, opt);
-      $fbtn.removeClass(opt.iColorName).eq(index).addClass(opt.iColorName);
+      $sIndexLi.removeClass(opt.iColorName).eq(index).addClass(opt.iColorName);
 
-
-      console.log(opt.b.$index)
       // 返回改变的i值
       return opt.b.$index = index;
     });
