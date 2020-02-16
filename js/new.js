@@ -47,6 +47,7 @@
       // 将默认值和传递过来的选项合并
       this.options = $.extend({}, this.defaults, option)
 
+
     }
 
     GmaFocus () {
@@ -62,8 +63,8 @@
         b: {
           liNum: $liNum,
           imgWidth: $imgWidth,
-          ulwidth: $ulwidth,
-          $index: 0
+          $index: 0,
+          $time:0
         }
       }
 
@@ -71,8 +72,7 @@
       $options = $.extend({}, $options, test)
 
       // 调用设置样式的方法
-      setStyle($this, $options, $ulwidth)
-
+      // setStyle($this, $options, $ulwidth)
       // 调用左右切换的方法
       btnClick($this, $options)
 
@@ -87,7 +87,7 @@
       // }
 
       autoMove($this, $options, 'move')
-      intChange($this, $options)
+      // intChange($this, $options)
 
       if ($options.b.liNum == 1) {
         // $options.autoMove = 'flase';
@@ -98,6 +98,76 @@
 
 
 
+
+  }
+
+  class Basic1 {
+    constructor(element, option) {
+      this.ele = {
+        Gma_wrap: element,
+        centerbox: element.find('.centerbox'),
+        innerLi: element.find('.centerbox li')
+      };
+
+      this.defaults = {
+        effect: 'slide',
+        imgWidth: 800,
+        imgHeight: 500,
+        showBtn: 'true',
+        clickTime: '500',
+        iColorName: 'on',
+        showIndex: 'true'
+      };
+
+      this.options = $.extend({}, this.defaults, option);
+
+      this.otherOptions = {
+        liNum: this.ele.innerLi.length, // 获取li的个数
+        ulWidth: this.ele.innerLi.length * this.defaults.imgWidth, // 根据li的个数乘以图片的宽度，获取ul的总宽度
+        $index:0, // 设置控制系数，用于轮播自增自减
+        $time:'none' // 用于存储定时器
+      }
+
+      this.options = $.extend({}, this.options, this.otherOptions);
+
+    }
+
+    setStyle(){
+      this.ele.Gma_wrap.css('width',this.options.imgWidth)
+
+      this.ele.innerLi.css({
+        'width': this.options.imgWidth,
+        'height': this.options.imgHeight
+      })
+
+      if (this.options.effect == 'slide') {   // 当切换效果为slide时，设置的样式
+        //根据图片数量设置ul的宽度
+        this.ele.centerbox.css('width', this.options.ulWidth)
+  
+      } else if (this.options.effect == 'fade') { //当切换效果为fade时，设置的样式
+  
+        this.ele.Gma_wrap.css({
+          'position': 'relative'
+        });
+  
+        //与slide不同，fade效果下centerbox的宽度与li的宽高应该相同。
+        this.ele.centerbox.css({
+          'width': this.options.imgWidth,
+          'height': this.options.imgHeight
+        })
+  
+        this.ele.innerLi.css({
+          'position': 'absolute',
+          'display': 'none'
+        })
+  
+        this.ele.innerLi.eq(0).fadeIn();
+      }
+    }
+
+    Focus(){
+      this.setStyle()
+    }
 
   }
 
@@ -183,13 +253,13 @@
     }
   }
 
-  var bc;
 
   // 设置定时器
   function autoMove (ele, opt, status) {
+
     if (status == 'move') {
       console.log('move')
-      bc = setInterval(() => {
+      opt.b.$time = setInterval(() => {
         opt.b.$index++;
         if (opt.b.$index > opt.b.liNum - 1) {
           opt.b.$index = 0;
@@ -197,21 +267,19 @@
         } else {
           changeto(opt.b.$index, ele, opt);
         }
-      }, 1000);
+      }, 3000);
     }
 
     if (status == 'stop') {
       console.log('stop')
-      clearInterval(bc)
+      clearInterval(opt.b.$time)
     }
-
-   
-
   }
 
 
   // 计时器停止与启动
   function intChange (ele, opt) {
+
     ele.Gma_wrap.hover(function () {
       console.log('停止定时器')
       autoMove(ele, opt, 'stop')
@@ -286,8 +354,11 @@
 
     // 通过实例化，将页面中的预置参数传递到类中
     let Focus = new Basic(this, options);
-
+    let Fo = new Basic1(this, options);
+    Fo.Focus();
     Focus.GmaFocus();
   }
 })(jQuery);
+
+
 
