@@ -79,7 +79,7 @@
       {
         function autoChange () {
           i++;
-          if (i > $liNum - 1) {
+          if (i > $liNum.length - 1) {
             i = 0;
             changeto(i);
           } else {
@@ -145,7 +145,7 @@
           $next.click(function () {
             if (!$centerbox.is(':animated')) {
               i++;
-              if (i > $liNum - 1) {
+              if (i > $liNum.length - 1) {
                 i = 0;
                 changeto(i);
               } else {
@@ -158,7 +158,7 @@
             if (!$this.find('.centerbox').is(':animated')) {
               i--;
               if (i < 0) {
-                i = $liNum - 1;
+                i = $liNum.length- 1;
                 changeto(i);
 
               } else {
