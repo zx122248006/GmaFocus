@@ -351,14 +351,14 @@
       }
     }
 
+    // 对一些选项进行判断。设置为其他的值
+    optionsSet(){
+
+    }
 
     Focus () {
       let opt = this.options;
       this.setStyle()
-
-
-      console.log(opt.setStyle)
-
 
       if (opt.autoMove == true) {
         this.autoMove('move')
@@ -376,8 +376,6 @@
       if (opt.showBtn == true) {
         this.setBtnClick()
       }
-
-
 
       this.onVisbChange()
 
