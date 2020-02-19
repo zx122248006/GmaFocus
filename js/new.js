@@ -110,19 +110,20 @@
       };
 
       this.defaults = {
-        effect: 'slide',
-        imgWidth: 800,
-        imgHeight: 500,
-        showBtn: true,
-        showIndex: true,
-        clickTime: 500,
-        iColorName: 'on',
-        setStyle: false
+        effect: 'slide', // 切换效果
+        imgWidth: 800,  // 轮播宽度
+        imgHeight: 500, // 轮播高度
+        showBtn: true, // 是否显示切换按钮
+        showIndex: true, // 是否显示切换索引
+        switchTime: 3000, // 切换时间
+        effectTime: 500, // 切换速度
+        styleComplete: false // 用于判断是否处理完样式
       };
 
       this.options = $.extend({}, this.defaults, option);
 
       this.otherOptions = {
+        iColorName: 'on', // 切换索引样式
         liNum: this.ele.innerLi.length, // 获取li的个数
         ulWidth: this.ele.innerLi.length * this.defaults.imgWidth, // 根据li的个数乘以图片的宽度，获取ul的总宽度
         $index: 0, // 设置控制系数，用于轮播自增自减
@@ -143,8 +144,6 @@
         'height': opt.imgHeight
       })
 
-
-
       if (opt.effect == 'slide') {   // 当切换效果为slide时，设置的样式
         //根据图片数量设置ul的宽度
         ele.centerbox.css('width', opt.ulWidth)
@@ -154,13 +153,11 @@
         ele.Gma_wrap.css({
           'position': 'relative'
         });
-
         //与slide不同，fade效果下centerbox的宽度与li的宽高应该相同。
         ele.centerbox.css({
           'width': opt.imgWidth,
           'height': opt.imgHeight
         })
-
         ele.innerLi.css({
           'position': 'absolute',
           'display': 'none'
@@ -168,14 +165,10 @@
 
         ele.innerLi.eq(0).fadeIn();
       }
-
-
-
     }
 
     // 鼠标移入轮播范围时，显示/隐藏切换按钮
     btnHover (prev, next, opacityVal) {
-
       prev.stop(true, true).animate({
         'opacity': opacityVal
       });
@@ -192,8 +185,6 @@
       let $prev = ele.Gma_wrap.find('.prev'); //在动态增加切换按钮之后获取切换按钮
       let $next = ele.Gma_wrap.find('.next');
 
-
-      // if (opt.showBtn == 'true') {
       ele.Gma_wrap.hover(
         function () {
           $this.btnHover($prev, $next, 0.8)
@@ -202,52 +193,49 @@
           $this.btnHover($prev, $next, 0.0)
         }
       )
+
       $next.click(function () {
-        if (!ele.centerbox.is(':animated')) {
+        if (!ele.centerbox.is(':animated') && !ele.innerLi.is(':animated')) {
           opt.$index++;
           if (opt.$index > opt.liNum - 1) {
             opt.$index = 0;
-            $this.changeto(opt.$index, ele, opt);
+            $this.changeto();
           } else {
-            $this.changeto(opt.$index, ele, opt);
+            $this.changeto();
           }
         }
       })
 
       $prev.click(function () {
-        if (!ele.centerbox.is(':animated')) {
+        if (!ele.centerbox.is(':animated') && !ele.innerLi.is(':animated')) {
           opt.$index--;
           if (opt.$index < 0) {
             opt.$index = opt.liNum - 1;
-            $this.changeto(opt.$index);
+            $this.changeto();
           } else {
-            $this.changeto(opt.$index);
+            $this.changeto();
           }
         }
       })
-      // }
     }
 
     // 处理切换
-    changeto (num) {
-      // 由于存在点击切换按钮和索引按钮，需要使用传参的方式获取当前的是第几个。
-      // 来进行移动
+    changeto () {
+      // 由于存在点击切换按钮和索引按钮，需要使用传参的方式获取当前的是第几个。来进行移动
       let ele = this.ele;
       let opt = this.options;
-      let $go = num * opt.imgWidth; // 设置移动的值
+      let $go = opt.$index * opt.imgWidth; // 设置移动的值
       let $fbtn = ele.Gma_wrap.find('.fbtn ul li');
 
       if (opt.effect == 'slide') { //判断切换的效果为slide时
         ele.centerbox.animate({
           left: '-' + $go
-        }, opt.clickTime);
+        }, opt.effectTime);
       } else if (opt.effect == 'fade') { //判断切换效果为fade时
-        ele.innerLi.eq(opt.$index).fadeIn().siblings().fadeOut()
+        ele.innerLi.eq(opt.$index).fadeIn(opt.effectTime).siblings().fadeOut(opt.effectTime)
       }
 
-      if ($fbtn != 0) {
-        $fbtn.removeClass(opt.iColorName).eq(opt.$index).addClass(opt.iColorName);
-      }
+      $fbtn.removeClass(opt.iColorName).eq(opt.$index).addClass(opt.iColorName);
     }
 
     // 设置索引按钮及点击时的状况
@@ -269,14 +257,16 @@
 
       let $sIndexLi = ele.Gma_wrap.find('.fbtn ul li');
 
+
       // 当鼠标在切换索引时的效果
       $sIndexLi.on('click', function () {
         let index = $(this).index();
-        $this.changeto(index);
-        $sIndexLi.removeClass(opt.iColorName).eq(index).addClass(opt.iColorName);
 
         // 返回改变的i值
         opt.$index = index;
+
+        $this.changeto();
+
       });
 
     }
@@ -295,9 +285,9 @@
         this.clearTime()
       }
 
-      // 触发自身之后，将setStyle设置为true
+      // 触发自身之后，将styleComplete设置为true
       // 用于鼠标移入移出时，定时器的控制
-      opt.setStyle = true;
+      opt.styleComplete = true;
     }
 
     // 鼠标移入移除控制定时器
@@ -305,7 +295,7 @@
       let $this = this;
       let opt = this.options;
 
-      if (opt.setStyle) {
+      if (opt.styleComplete) {
         this.ele.Gma_wrap.hover(function () {
           $this.autoMove('stop')
         }, function () {
@@ -322,9 +312,9 @@
         opt.$index++;
         if (opt.$index > opt.liNum - 1) {
           opt.$index = 0;
-          $this.changeto(opt.$index)
+          $this.changeto()
         } else {
-          $this.changeto(opt.$index)
+          $this.changeto()
         }
       }, opt.switchTime)
     }
@@ -337,170 +327,180 @@
       let $this = this;
       document.onvisibilitychange = function () {
 
-        
-        if (document.hidden == true && document.visibilityState == 'hidden') {
+        if (document.hidden == true || document.visibilityState == 'hidden') {
           $this.autoMove('stop')
         }
 
-        if (document.hidden == false && document.visibilityState == 'visible') {
+        if (document.hidden == false || document.visibilityState == 'visible') {
           $this.autoMove('move')
         }
-        
-        // console.log("hidden" + ":" + document.hidden);
-        // console.log("visibilityState" + ":" + document.visibilityState);
+
       }
     }
 
     // 对一些选项进行判断。设置为其他的值
-    optionsSet(){
+    setOptions () {
+      let opt = this.options;
 
+      if (opt.liNum == 1) {
+        opt.autoMove = false;
+        opt.showBtn = false;
+        opt.showIndex = false;
+      }
+
+      if (opt.liNum == 2) {
+        opt.effect = 'fade';
+        opt.showIndex = false;
+      }
+
+      if (opt.switchTime <= 2000) {
+        opt.switchTime = 2500;
+      }
     }
 
     Focus () {
       let opt = this.options;
-      this.setStyle()
+      this.setStyle();
+      this.setOptions();
 
       if (opt.autoMove == true) {
         this.autoMove('move')
-        if (opt.setStyle == true) {
+        if (opt.styleComplete == true) {
           setTimeout(() => {
             this.intChange()
           }, 0);
         }
-      }
-
-
+      };
       if (opt.showIndex == true) {
         this.setShowIndex()
-      }
+      };
       if (opt.showBtn == true) {
         this.setBtnClick()
-      }
+      };
 
-      this.onVisbChange()
-
+      this.onVisbChange();
     }
 
   }
 
 
-  //根据li宽高设置ul的宽度
-  function setStyle (ele, options, ulwidth) {
+  // //根据li宽高设置ul的宽度
+  // function setStyle (ele, options, ulwidth) {
 
-    // 设置共同的样式
+  //   // 设置共同的样式
 
-    // 根据图片一张图片宽度设置展示页面框的大小
-    ele.Gma_wrap.css('width', options.imgWidth)
+  //   // 根据图片一张图片宽度设置展示页面框的大小
+  //   ele.Gma_wrap.css('width', options.imgWidth)
 
-    // 设置图片及其容器的大小（由于图片宽高随li改变，所以只设置li的宽高）
-    ele.innerLi.css({
-      'width': options.imgWidth,
-      'height': options.imgHeight
-    })
+  //   // 设置图片及其容器的大小（由于图片宽高随li改变，所以只设置li的宽高）
+  //   ele.innerLi.css({
+  //     'width': options.imgWidth,
+  //     'height': options.imgHeight
+  //   })
 
-    if (options.effect == 'slide') {   // 当切换效果为slide时，设置的样式
-      //根据图片数量设置ul的宽度
-      ele.centerbox.css('width', ulwidth)
+  //   if (options.effect == 'slide') {   // 当切换效果为slide时，设置的样式
+  //     //根据图片数量设置ul的宽度
+  //     ele.centerbox.css('width', ulwidth)
 
-    } else if (options.effect == 'fade') { //当切换效果为fade时，设置的样式
+  //   } else if (options.effect == 'fade') { //当切换效果为fade时，设置的样式
 
-      ele.Gma_wrap.css({
-        'position': 'relative'
-      });
+  //     ele.Gma_wrap.css({
+  //       'position': 'relative'
+  //     });
 
-      //与slide不同，fade效果下centerbox的宽度与li的宽高应该相同。
-      ele.centerbox.css({
-        'width': options.imgWidth,
-        'height': options.imgHeight
-      })
+  //     //与slide不同，fade效果下centerbox的宽度与li的宽高应该相同。
+  //     ele.centerbox.css({
+  //       'width': options.imgWidth,
+  //       'height': options.imgHeight
+  //     })
 
-      ele.innerLi.css({
-        'position': 'absolute',
-        'display': 'none'
-      })
+  //     ele.innerLi.css({
+  //       'position': 'absolute',
+  //       'display': 'none'
+  //     })
 
-      ele.innerLi.eq(0).fadeIn();
-    }
-  }
+  //     ele.innerLi.eq(0).fadeIn();
+  //   }
+  // }
 
-  // 判断是否显示切换按钮，及点击切换按钮
-  function btnClick (ele, opt) {
+  // // 判断是否显示切换按钮，及点击切换按钮
+  // function btnClick (ele, opt) {
 
-    let $prev = ele.Gma_wrap.find('.prev'); //在动态增加切换按钮之后获取切换按钮
-    let $next = ele.Gma_wrap.find('.next');
-    let $liNum = ele.innerLi.length //获取li的数量
+  //   let $prev = ele.Gma_wrap.find('.prev'); //在动态增加切换按钮之后获取切换按钮
+  //   let $next = ele.Gma_wrap.find('.next');
+  //   let $liNum = ele.innerLi.length //获取li的数量
 
-    if (opt.showBtn == 'true') {
-      ele.Gma_wrap.hover(
-        function () {
-          btnHover($prev, $next, 0.8)
-        },
-        function () {
-          btnHover($prev, $next, 0.0)
-        }
-      )
-      $next.click(function () {
-        if (!ele.centerbox.is(':animated')) {
-          opt.b.$index++;
-          if (opt.b.$index > $liNum - 1) {
-            opt.b.$index = 0;
-            changeto(opt.b.$index, ele, opt);
-          } else {
-            changeto(opt.b.$index, ele, opt);
-          }
-        }
-      })
+  //   if (opt.showBtn == 'true') {
+  //     ele.Gma_wrap.hover(
+  //       function () {
+  //         btnHover($prev, $next, 0.8)
+  //       },
+  //       function () {
+  //         btnHover($prev, $next, 0.0)
+  //       }
+  //     )
+  //     $next.click(function () {
+  //       if (!ele.centerbox.is(':animated')) {
+  //         opt.b.$index++;
+  //         if (opt.b.$index > $liNum - 1) {
+  //           opt.b.$index = 0;
+  //           changeto(opt.b.$index, ele, opt);
+  //         } else {
+  //           changeto(opt.b.$index, ele, opt);
+  //         }
+  //       }
+  //     })
 
-      $prev.click(function () {
-        if (!ele.centerbox.is(':animated')) {
-          opt.b.$index--;
-          if (opt.b.$index < 0) {
-            opt.b.$index = $liNum - 1;
-            changeto(opt.b.$index, ele, opt);
-          } else {
-            changeto(opt.b.$index, ele, opt);
-          }
-        }
-      })
-    }
-  }
-
-
-  // 设置定时器
-  function autoMove (ele, opt, status) {
-
-    if (status == 'move') {
-      console.log('move')
-      opt.b.$time = setInterval(() => {
-        opt.b.$index++;
-        if (opt.b.$index > opt.b.liNum - 1) {
-          opt.b.$index = 0;
-          changeto(opt.b.$index, ele, opt);
-        } else {
-          changeto(opt.b.$index, ele, opt);
-        }
-      }, 3000);
-    }
-
-    if (status == 'stop') {
-      console.log('stop')
-      clearInterval(opt.b.$time)
-    }
-  }
+  //     $prev.click(function () {
+  //       if (!ele.centerbox.is(':animated')) {
+  //         opt.b.$index--;
+  //         if (opt.b.$index < 0) {
+  //           opt.b.$index = $liNum - 1;
+  //           changeto(opt.b.$index, ele, opt);
+  //         } else {
+  //           changeto(opt.b.$index, ele, opt);
+  //         }
+  //       }
+  //     })
+  //   }
+  // }
 
 
-  // 计时器停止与启动
-  function intChange (ele, opt) {
+  // // 设置定时器
+  // function autoMove (ele, opt, status) {
 
-    ele.Gma_wrap.hover(function () {
-      console.log('停止定时器')
-      autoMove(ele, opt, 'stop')
-    }, function () {
-      console.log('设置定时器')
-      autoMove(ele, opt, 'move')
-    })
+  //   if (status == 'move') {
+  //     console.log('move')
+  //     opt.b.$time = setInterval(() => {
+  //       opt.b.$index++;
+  //       if (opt.b.$index > opt.b.liNum - 1) {
+  //         opt.b.$index = 0;
+  //         changeto(opt.b.$index, ele, opt);
+  //       } else {
+  //         changeto(opt.b.$index, ele, opt);
+  //       }
+  //     }, 3000);
+  //   }
 
-  }
+  //   if (status == 'stop') {
+  //     console.log('stop')
+  //     clearInterval(opt.b.$time)
+  //   }
+  // }
+
+
+  // // 计时器停止与启动
+  // function intChange (ele, opt) {
+
+  //   ele.Gma_wrap.hover(function () {
+  //     console.log('停止定时器')
+  //     autoMove(ele, opt, 'stop')
+  //   }, function () {
+  //     console.log('设置定时器')
+  //     autoMove(ele, opt, 'move')
+  //   })
+
+  // }
 
 
   // // 鼠标移入轮播范围时，显示/隐藏切换按钮
@@ -514,52 +514,52 @@
   //   })
   // }
 
-  function changeto (num, ele, opt) {
-    // let $fbtn = ele.innerLi; // 获取切换索引
-    let $go = num * opt.imgWidth; // 设置移动的值
+  // function changeto (num, ele, opt) {
+  //   // let $fbtn = ele.innerLi; // 获取切换索引
+  //   let $go = num * opt.imgWidth; // 设置移动的值
 
-    let $fbtn = ele.Gma_wrap.find('.fbtn ul li');
+  //   let $fbtn = ele.Gma_wrap.find('.fbtn ul li');
 
-    if (opt.effect == 'slide') { //判断切换的效果为slide时
+  //   if (opt.effect == 'slide') { //判断切换的效果为slide时
 
-      ele.centerbox.animate({
-        left: '-' + $go
-      }, opt.clickTime);
+  //     ele.centerbox.animate({
+  //       left: '-' + $go
+  //     }, opt.clickTime);
 
-    } else if (opt.effect == 'fade') { //判断切换效果为fade时
-      ele.innerLi.eq(num).fadeIn().siblings().fadeOut()
-    }
-    $fbtn.removeClass(opt.iColorName).eq(num).addClass(opt.iColorName);
-  }
+  //   } else if (opt.effect == 'fade') { //判断切换效果为fade时
+  //     ele.innerLi.eq(num).fadeIn().siblings().fadeOut()
+  //   }
+  //   $fbtn.removeClass(opt.iColorName).eq(num).addClass(opt.iColorName);
+  // }
 
-  function setBtn (ele, opt) {
+  // function setBtn (ele, opt) {
 
-    // 显示索引，动态增加索引栏目
-    ele.Gma_wrap.append('<div class="fbtn"></div>').find('.fbtn').append('<ul></ul>');
+  //   // 显示索引，动态增加索引栏目
+  //   ele.Gma_wrap.append('<div class="fbtn"></div>').find('.fbtn').append('<ul></ul>');
 
-    $liNum = ele.innerLi.length;
-    for (let i = 0; i < $liNum; i++) {
-      if (i == 0) {
-        // 为第一个索引设置不同的样式
-        ele.Gma_wrap.find('.fbtn ul').append('<li class="' + opt.iColorName + '"><a href="javascript:void(0)"></a></li>');
-      } else {
-        ele.Gma_wrap.find('.fbtn ul').append('<li><a href="javascript:void(0)"></a></li>');
-      }
-    }
+  //   $liNum = ele.innerLi.length;
+  //   for (let i = 0; i < $liNum; i++) {
+  //     if (i == 0) {
+  //       // 为第一个索引设置不同的样式
+  //       ele.Gma_wrap.find('.fbtn ul').append('<li class="' + opt.iColorName + '"><a href="javascript:void(0)"></a></li>');
+  //     } else {
+  //       ele.Gma_wrap.find('.fbtn ul').append('<li><a href="javascript:void(0)"></a></li>');
+  //     }
+  //   }
 
-    let $sIndexLi = ele.Gma_wrap.find('.fbtn ul li');
+  //   let $sIndexLi = ele.Gma_wrap.find('.fbtn ul li');
 
-    // 当鼠标在切换索引时的效果
-    $sIndexLi.on('click', function () {
-      let index = $(this).index();
-      changeto(index, ele, opt);
-      $sIndexLi.removeClass(opt.iColorName).eq(index).addClass(opt.iColorName);
+  //   // 当鼠标在切换索引时的效果
+  //   $sIndexLi.on('click', function () {
+  //     let index = $(this).index();
+  //     changeto(index, ele, opt);
+  //     $sIndexLi.removeClass(opt.iColorName).eq(index).addClass(opt.iColorName);
 
-      // 返回改变的i值
-      return opt.b.$index = index;
-    });
+  //     // 返回改变的i值
+  //     return opt.b.$index = index;
+  //   });
 
-  }
+  // }
 
   $.fn.GmaFocus = function (options) {
     // let Focus = new Gma_Focus(this, options);

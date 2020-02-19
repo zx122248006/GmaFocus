@@ -15,11 +15,11 @@
     this.$elemnet = element;
     this.defaults = {
       effect: 'slide', //切换的效果
-      autoMove: 'true', //是否自动移动
-      showBtn: 'true', //是否显示切换按钮
-      showIndex: 'true', //是否显示切换索引
-      autoTime: '3500', //自动切换的时间
-      clickTime: '500', //点击切换按钮切换的时间
+      autoMove: true, //是否自动移动
+      showBtn: true, //是否显示切换按钮
+      showIndex: true, //是否显示切换索引
+      autoTime: 3500, //自动切换的时间
+      clickTime: 500, //点击切换按钮切换的时间
       imgWidth: '800px', //图片默认宽度
       imgHeight: '500px', //图片默认高度
     }
@@ -137,7 +137,7 @@
         }
 
         // 判断切换按钮是否显示
-        if ($options.showBtn == 'true') {
+        if ($options.showBtn == true) {
 
           let $prev = $this.find('.prev'); //在动态增加切换按钮之后获取切换按钮
           let $next = $this.find('.next');
@@ -187,12 +187,12 @@
               })
             }
           )
-        } else if ($options.showBtn == 'flase') {
+        } else if ($options.showBtn == flase) {
           $this.find('.Gma-Focus-btn').remove()
         }
 
         // 判断切换索引是否显示
-        if ($options.showIndex == 'true') {
+        if ($options.showIndex == true) {
 
           // 显示索引，动态增加索引栏目
           $this.find('.Gma-focus').append('<div class="fbtn"></div>').find('.fbtn').append('<ul></ul>');
@@ -220,7 +220,7 @@
 
         // 调试中
         // 判断是否自动切换
-        if ($options.autoMove == 'true') {
+        if ($options.autoMove == true) {
           b = 0;
 
           var autochane = setInterval(function () {
