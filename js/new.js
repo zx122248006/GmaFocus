@@ -22,7 +22,8 @@
         showIndex: true, // 是否显示切换索引
         switchTime: 3000, // 切换时间
         effectTime: 500, // 切换速度
-        styleComplete: false // 用于判断是否处理完样式
+        styleComplete: false, // 用于判断是否处理完样式
+        autoWidth: false // 用于判断是否需要根据外部的div自适应宽高
       };
 
       this.options = $.extend({}, this.defaults, option);
@@ -43,6 +44,15 @@
     setStyle () {
       let ele = this.ele;
       let opt = this.options;
+
+      // 设置自动宽高可能还有问题
+      if (opt.autoWidth) {
+        // 使得img的宽高根据Gma_Focus外的元素的宽高进行设置,如果外部不使用百分比，则有可能需要刷新之后，才能呈现效果
+        opt.imgWidth = ele.Gma_wrap.parent().width();
+        opt.imgHeight = ele.Gma_wrap.parent().height();
+        opt.ulWidth = opt.liNum * opt.imgWidth;
+      }
+
       ele.Gma_wrap.css('width', opt.imgWidth)
       ele.innerLi.css({
         'width': opt.imgWidth,
@@ -70,6 +80,7 @@
 
         ele.innerLi.eq(0).fadeIn();
       }
+
     }
 
     // 鼠标移入轮播范围时，显示/隐藏切换按钮
@@ -177,7 +188,6 @@
     autoMove (status) {
       let opt = this.options;
       if (status == 'move') {
-        // console.log('move')
         this.setTime()
       }
 
